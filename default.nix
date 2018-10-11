@@ -5,8 +5,7 @@ stdenv.mkDerivation rec {
   name = texName;
   src = ./.;
   installPhase = ''
-    mkdir -p $out/tex/latex/${texName}
-    cp src/*.sty $out/tex/latex/${texName}/.
+    mkdir $out && cp -r tex $out
   '';
   pname = name;
   tlType = "run";
