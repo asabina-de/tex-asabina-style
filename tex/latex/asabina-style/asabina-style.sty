@@ -82,6 +82,19 @@
   \renewcommand{\figurename}{Fig.}
   }
 
+% Footer/Header
+\RequirePackage{scrlayer-scrpage}
+\RequirePackage{lastpage}
+%\pagestyle{scrheadings}
+
+\lehead{\AgreementTitle}
+\lohead{\AgreementTitle}
+
+\rehead{\thepage/\pageref{LastPage}}
+\rohead{\thepage/\pageref{LastPage}}
+
+\cfoot{}
+
 
 
 
