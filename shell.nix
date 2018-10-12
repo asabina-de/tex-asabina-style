@@ -5,7 +5,6 @@ let
   style = callPackage ./default.nix {};
 in stdenv.mkDerivation rec {
   name = "${style.name}-env";
-  version = "0.1.0";
   buildInputs = [
     gnumake
     (texlive.combine {

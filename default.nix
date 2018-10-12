@@ -1,8 +1,7 @@
 { stdenv }:
 
 stdenv.mkDerivation rec {
-  texName = "asabina-style";
-  name = texName;
+  name = "asabina-style";
   src = ./.;
   installPhase = ''
     mkdir -p $out && cp -r tex $out
