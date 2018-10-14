@@ -36,6 +36,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 
+% TODO Eliminate Agreement* var references
 \newcommand\Footer{
 \begin{tikzpicture}[remember picture, overlay]
 \node(background) [
@@ -50,23 +51,53 @@
 ] at (current page.south west){\color{white}
   \begin{minipage}[t]{0.215\textwidth}\baselineskip=10pt
     \tiny
-    \AgreementSupplierName\\
-    \AgreementSupplierAddress\\
-    \AgreementSupplierPostalcode\ \AgreementSupplierPlace\\
-    \LabelManagement: \AgreementSupplierManager\\
+    \ifdef{\AgreementSupplierName}{\AgreementSupplierName\\}{}
+
+    \ifdef{\AgreementSupplierAddress}{\AgreementSupplierAddress\\}{}
+
+    \ifdef{\AgreementSupplierPostalcode}{\AgreementSupplierPostalcode%
+      \ifdef{\AgreementSupplierPlace}{\ \AgreementSupplierPlace\\}{}
+    }{%
+      \ifdef{\AgreementSupplierPlace}{\AgreementSupplierPlace\\}{}
+    }
+
+    \ifdef{\AgreementSupplierManager}{%
+      \ifdef{\LabelManagement}{\LabelManagement}{Management}:
+      \AgreementSupplierManager\\
+    }{}
   \end{minipage}
   \begin{minipage}[t]{0.315\textwidth}\baselineskip=10pt
     \tiny
-    \LabelChamberOfCommerce: \AgreementSupplierRegister\\
-    \LabelCourt: \AgreementSupplierRegistryCourt\\
-    \LabelTaxId: \AgreementSupplierTaxNumber\\
-    \LabelVatId: \AgreementSupplierVATCode\\
+    \ifdef{\AgreementSupplierRegister}{%
+      \ifdef{\LabelChamberOfCommerce}{\LabelChamberOfCommerce}{Register No.}:
+      \AgreementSupplierRegister\\
+    }{}
+
+    \ifdef{\AgreementSupplierRegistryCourt}{
+      \ifdef{\LabelCourt}{\LabelCourt}{Court}: \AgreementSupplierRegistryCourt\\
+    }{}
+
+    \ifdef{\AgreementSupplierTaxNumber}{%
+      \ifdef{\LabelTaxId}{\LabelTaxId}{Tax number}: \AgreementSupplierTaxNumber\\
+    }{}
+
+    \ifdef{\AgreementSupplierVATCode}{%
+      \ifdef{\LabelVatId}{\LabelVatId}{VAT Id.}: \AgreementSupplierVATCode\\
+    }{}
   \end{minipage}
   \begin{minipage}[t]{0.22\textwidth}\baselineskip=10pt
     \tiny
-    \LabelBankDetails: \AgreementSupplierBankInhaber\\
-    \LabelBIC: \AgreementSupplierBankBIC\\
-    \LabelIBAN: \AgreementSupplierBankIBAN
+    \ifdef{\AgreementSupplierBankInhaber}{%
+      \ifdef{\LabelBankDetails}{\LabelBankDetails}{Bank}: \AgreementSupplierBankInhaber\\
+    }{}
+
+    \ifdef{\AgreementSupplierBankBIC}{%
+      \ifdef{\LabelBIC}{\LabelBIC}{BIC}: \AgreementSupplierBankBIC\\
+    }{}
+
+    \ifdef{\AgreementSupplierBankIBAN}{%
+      \ifdef{\LabelIBAN}{\LabelIBAN}{IBAN}: \AgreementSupplierBankIBAN
+    }{}
   \end{minipage}
 };
 \ifdef{\AgreementSupplierFooterLogo}{
