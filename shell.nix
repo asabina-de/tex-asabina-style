@@ -2,9 +2,8 @@ with import <nixpkgs> {};
 
 let
   fonts = makeFontsConf { fontDirectories = [ montserrat ]; };
-  style = callPackage ./default.nix {};
 in stdenv.mkDerivation rec {
-  name = "${style.name}-env";
+  name = "tex-asabina-style-env";
   buildInputs = [
     gnumake
     (texlive.combine {
@@ -14,15 +13,12 @@ in stdenv.mkDerivation rec {
       collection-fontsrecommended
       collection-langgerman
       collection-latexrecommended
+      lastpage
       metafont
       numprint
       xetex
       xstring
       ;
-
-      style = {
-        pkgs = [ style ];
-      };
     })
   ];
 
