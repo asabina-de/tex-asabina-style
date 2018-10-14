@@ -36,8 +36,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 
-% TODO Eliminate Agreement* var references
-\newcommand\Footer{
+\newcommand\Footer[4]{
 \begin{tikzpicture}[remember picture, overlay]
 \node(background) [
   shape=rectangle,
@@ -50,62 +49,21 @@
   font=\footnotesize\bfseries, align=left
 ] at (current page.south west){\color{white}
   \begin{minipage}[t]{0.215\textwidth}\baselineskip=10pt
-    \tiny
-    \ifdef{\AgreementSupplierName}{\AgreementSupplierName\\}{}
-
-    \ifdef{\AgreementSupplierAddress}{\AgreementSupplierAddress\\}{}
-
-    \ifdef{\AgreementSupplierPostalcode}{\AgreementSupplierPostalcode%
-      \ifdef{\AgreementSupplierPlace}{\ \AgreementSupplierPlace\\}{}
-    }{%
-      \ifdef{\AgreementSupplierPlace}{\AgreementSupplierPlace\\}{}
-    }
-
-    \ifdef{\AgreementSupplierManager}{%
-      \ifdef{\LabelManagement}{\LabelManagement}{Management}:
-      \AgreementSupplierManager\\
-    }{}
+    \tiny #1
   \end{minipage}
   \begin{minipage}[t]{0.315\textwidth}\baselineskip=10pt
-    \tiny
-    \ifdef{\AgreementSupplierRegister}{%
-      \ifdef{\LabelChamberOfCommerce}{\LabelChamberOfCommerce}{Register No.}:
-      \AgreementSupplierRegister\\
-    }{}
-
-    \ifdef{\AgreementSupplierRegistryCourt}{
-      \ifdef{\LabelCourt}{\LabelCourt}{Court}: \AgreementSupplierRegistryCourt\\
-    }{}
-
-    \ifdef{\AgreementSupplierTaxNumber}{%
-      \ifdef{\LabelTaxId}{\LabelTaxId}{Tax number}: \AgreementSupplierTaxNumber\\
-    }{}
-
-    \ifdef{\AgreementSupplierVATCode}{%
-      \ifdef{\LabelVatId}{\LabelVatId}{VAT Id.}: \AgreementSupplierVATCode\\
-    }{}
+    \tiny #2
   \end{minipage}
   \begin{minipage}[t]{0.22\textwidth}\baselineskip=10pt
-    \tiny
-    \ifdef{\AgreementSupplierBankInhaber}{%
-      \ifdef{\LabelBankDetails}{\LabelBankDetails}{Bank}: \AgreementSupplierBankInhaber\\
-    }{}
-
-    \ifdef{\AgreementSupplierBankBIC}{%
-      \ifdef{\LabelBIC}{\LabelBIC}{BIC}: \AgreementSupplierBankBIC\\
-    }{}
-
-    \ifdef{\AgreementSupplierBankIBAN}{%
-      \ifdef{\LabelIBAN}{\LabelIBAN}{IBAN}: \AgreementSupplierBankIBAN
-    }{}
+    \tiny #3
   \end{minipage}
-};
-\ifdef{\AgreementSupplierFooterLogo}{
-  \node[anchor=south east, yshift=0.2cm] at (current page.south east) {\AgreementSupplierFooterLogo};
-}{}
+}; #4
 \end{tikzpicture}}
 
-\AtBeginShipout{\AtBeginShipoutAddToBox{\Footer}}
+% TODO Make optional through DocumentHasFooter boolean
+\newcommand{\RenderDocumentFooter}[4]{%
+  \AtBeginShipout{\AtBeginShipoutAddToBox{\Footer{#1}{#2}{#3}{#4}}}
+}
 
 % Caption of figures
   \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}

@@ -16,6 +16,48 @@
 % TODO Refactor style package to accept title as arg?
 \def\DocumentTitle{Example}
 
+\RenderDocumentFooter{%
+  \ifdef{\AgreementSupplierName}{\AgreementSupplierName\\}{}
+  \ifdef{\AgreementSupplierAddress}{\AgreementSupplierAddress\\}{}
+  \ifdef{\AgreementSupplierPostalcode}{\AgreementSupplierPostalcode%
+    \ifdef{\AgreementSupplierPlace}{\ \AgreementSupplierPlace\\}{}
+  }{%
+    \ifdef{\AgreementSupplierPlace}{\AgreementSupplierPlace\\}{}
+  }
+  \ifdef{\AgreementSupplierManager}{%
+    \ifdef{\LabelManagement}{\LabelManagement}{Management}:
+    \AgreementSupplierManager\\
+  }{}
+}{%
+  \ifdef{\AgreementSupplierRegister}{%
+    \ifdef{\LabelChamberOfCommerce}{\LabelChamberOfCommerce}{Register No.}:
+    \AgreementSupplierRegister\\
+  }{}
+  \ifdef{\AgreementSupplierRegistryCourt}{
+    \ifdef{\LabelCourt}{\LabelCourt}{Court}: \AgreementSupplierRegistryCourt\\
+  }{}
+  \ifdef{\AgreementSupplierTaxNumber}{%
+    \ifdef{\LabelTaxId}{\LabelTaxId}{Tax number}: \AgreementSupplierTaxNumber\\
+  }{}
+  \ifdef{\AgreementSupplierVATCode}{%
+    \ifdef{\LabelVatId}{\LabelVatId}{VAT Id.}: \AgreementSupplierVATCode\\
+  }{}
+}{%
+  \ifdef{\AgreementSupplierBankInhaber}{%
+    \ifdef{\LabelBankDetails}{\LabelBankDetails}{Bank}: \AgreementSupplierBankInhaber\\
+  }{}
+  \ifdef{\AgreementSupplierBankBIC}{%
+    \ifdef{\LabelBIC}{\LabelBIC}{BIC}: \AgreementSupplierBankBIC\\
+  }{}
+  \ifdef{\AgreementSupplierBankIBAN}{%
+    \ifdef{\LabelIBAN}{\LabelIBAN}{IBAN}: \AgreementSupplierBankIBAN
+  }{}
+}{%
+  \ifdef{\AgreementSupplierFooterLogo}{%
+    \node[anchor=south east, yshift=0.2cm] at (current page.south east) {\AgreementSupplierFooterLogo};
+  }{}
+}
+
 \begin{document}
   This is just a simple document
 \end{document}
