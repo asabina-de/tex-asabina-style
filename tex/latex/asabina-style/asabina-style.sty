@@ -87,15 +87,12 @@
 \RequirePackage{lastpage}
 %\pagestyle{scrheadings}
 
-\lehead{\AgreementTitle}
-\lohead{\AgreementTitle}
+\ifdef{\DocumentTitle}{%
+  \lehead{\DocumentTitle}
+  \lohead{\DocumentTitle}
+}{}
 
 \rehead{\thepage/\pageref{LastPage}}
 \rohead{\thepage/\pageref{LastPage}}
 
 \cfoot{}
-
-
-
-
-
