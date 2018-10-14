@@ -17,45 +17,20 @@
 \def\DocumentTitle{Example}
 
 \RenderDocumentFooter{%
-  \ifdef{\AgreementSupplierName}{\AgreementSupplierName\\}{}
-  \ifdef{\AgreementSupplierAddress}{\AgreementSupplierAddress\\}{}
-  \ifdef{\AgreementSupplierPostalcode}{\AgreementSupplierPostalcode%
-    \ifdef{\AgreementSupplierPlace}{\ \AgreementSupplierPlace\\}{}
-  }{%
-    \ifdef{\AgreementSupplierPlace}{\AgreementSupplierPlace\\}{}
-  }
-  \ifdef{\AgreementSupplierManager}{%
-    \ifdef{\LabelManagement}{\LabelManagement}{Management}:
-    \AgreementSupplierManager\\
-  }{}
+  Useful Innovations GmbH\\
+  Random-Straße 1337x\\
+  10101, Hack\\
+  Management: Kwamina Foo
 }{%
-  \ifdef{\AgreementSupplierRegister}{%
-    \ifdef{\LabelChamberOfCommerce}{\LabelChamberOfCommerce}{Register No.}:
-    \AgreementSupplierRegister\\
-  }{}
-  \ifdef{\AgreementSupplierRegistryCourt}{
-    \ifdef{\LabelCourt}{\LabelCourt}{Court}: \AgreementSupplierRegistryCourt\\
-  }{}
-  \ifdef{\AgreementSupplierTaxNumber}{%
-    \ifdef{\LabelTaxId}{\LabelTaxId}{Tax number}: \AgreementSupplierTaxNumber\\
-  }{}
-  \ifdef{\AgreementSupplierVATCode}{%
-    \ifdef{\LabelVatId}{\LabelVatId}{VAT Id.}: \AgreementSupplierVATCode\\
-  }{}
+  Register No.: AG Hack HRB\\
+  Court: Amtsgericht Hack Hex\\
+  Tax number: 10/010/01010\\
+  VAT Id.: DE000000000
 }{%
-  \ifdef{\AgreementSupplierBankInhaber}{%
-    \ifdef{\LabelBankDetails}{\LabelBankDetails}{Bank}: \AgreementSupplierBankInhaber\\
-  }{}
-  \ifdef{\AgreementSupplierBankBIC}{%
-    \ifdef{\LabelBIC}{\LabelBIC}{BIC}: \AgreementSupplierBankBIC\\
-  }{}
-  \ifdef{\AgreementSupplierBankIBAN}{%
-    \ifdef{\LabelIBAN}{\LabelIBAN}{IBAN}: \AgreementSupplierBankIBAN
-  }{}
+  Bank: Imaginary Ethical Bank\\
+  BIC: IEB000000\\
+  IBAN: XX01 0000 1111 0000 1111 00
 }{%
-  \ifdef{\AgreementSupplierFooterLogo}{%
-    \node[anchor=south east, yshift=0.2cm] at (current page.south east) {\AgreementSupplierFooterLogo};
-  }{}
 }
 
 \begin{document}
