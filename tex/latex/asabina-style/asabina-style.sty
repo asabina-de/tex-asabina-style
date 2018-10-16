@@ -16,12 +16,21 @@
 \setlength{\parindent}{0cm}
 % Set the font
 \RequirePackage{fontspec}
-\setmainfont[Ligatures=TeX, Scale=0.8]{Montserrat-Regular}
+\setmainfont[Ligatures=TeX, Scale=1]{Montserrat-Regular}
 
 % Set the main font (Montserrat) to section headings and toc
 \@ifclassloaded{scrartcl}{%
   \addtokomafont{disposition}{\rmfamily}
 }{}
+
+% TODO Define KOMA font additions for scrbook and scrreprt
+
+\@ifclassloaded{scrlttr2}{%
+  \addtokomafont{backaddress}{\rmfamily}
+  \addtokomafont{refname}{\rmfamily}
+  \addtokomafont{refvalue}{\rmfamily}
+}{
+}
 
 \RequirePackage{etoolbox}
 \RequirePackage{numprint}
