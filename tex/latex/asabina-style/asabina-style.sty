@@ -69,12 +69,6 @@
   \AtBeginShipout{\AtBeginShipoutAddToBox{\Footer{#1}{#2}{#3}{#4}}}
 }
 
-% Caption of figures
-  \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
-  \addto\captionsgerman{
-  \renewcommand{\figurename}{Fig.}
-  }
-
 % Footer/Header
 \RequirePackage{scrlayer-scrpage}
 \RequirePackage{lastpage}
