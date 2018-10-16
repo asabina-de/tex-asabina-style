@@ -17,8 +17,12 @@
 % Set the font
 \RequirePackage{fontspec}
 \setmainfont[Ligatures=TeX, Scale=0.8]{Montserrat-Regular}
+
 % Set the main font (Montserrat) to section headings and toc
-\addtokomafont{disposition}{\rmfamily}
+\@ifclassloaded{scrartcl}{%
+  \addtokomafont{disposition}{\rmfamily}
+}{}
+
 \RequirePackage{etoolbox}
 \RequirePackage{numprint}
 \RequirePackage[table]{xcolor}
