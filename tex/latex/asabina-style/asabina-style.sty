@@ -78,6 +78,37 @@
   \AtBeginShipout{\AtBeginShipoutAddToBox{\Footer{#1}{#2}{#3}{#4}}}
 }
 
+\NewDocumentCommand{\footer}{ O{
+  shape=rectangle,
+  fill=black,
+  minimum width=\paperwidth,
+  minimum height=2.5cm,
+  text width=0.92\paperwidth,
+  text height=-0.2cm,
+  anchor=south west,
+  font=\footnotesize\bfseries,
+  align=left
+} O{current page.south west} m m }{%
+  \AtBeginShipout{\AtBeginShipoutAddToBox{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node(background) [#1] at (#2){#3};
+      \node[anchor=south east, yshift=0.2cm] at (current page.south east) {#4};
+    \end{tikzpicture}
+  }}
+}
+
+\NewDocumentCommand{\triptychfooter}{ O{0.25} O{0.25} O{0.25} m m m }{%
+  \begin{minipage}[t]{#1\textwidth}\baselineskip=10pt
+    #4
+  \end{minipage}
+  \begin{minipage}[t]{#2\textwidth}\baselineskip=10pt
+    #5
+  \end{minipage}
+  \begin{minipage}[t]{#3\textwidth}\baselineskip=10pt
+    #6
+  \end{minipage}
+}
+
 % Footer/Header
 \RequirePackage{scrlayer-scrpage}
 \RequirePackage{lastpage}
