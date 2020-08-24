@@ -142,6 +142,39 @@
   \pagecolor{white}
 }
 
+\NewDocumentEnvironment{asabina-titlepage-tophalf}{ O{} O{black} O{white} O{} }{%
+  \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+  \definecolor{namecolor}{cmyk}{1,.50,0,.10}
+
+  \begin{titlepage}
+  \pagecolor{#2}
+  \color{#3}
+  #1
+  \vskip2cm
+}{%
+  %\AddToShipoutPictureFG{%
+  %  \AtPageLowerLeft{%
+  %    \raisebox{-\height}{%
+  %      \fbox{here we go}
+  %    }
+  %  }
+  %}
+
+  %\begin{picture}(50,50)
+  %  \put(200,-300){\hbox{\includegraphics[scale=0.3]{#1}}}
+  %\end{picture}
+
+  %\titlepic{\includegraphics[width=\paperwidth,keepaspectratio]{#4}}
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[inner sep=0pt,anchor=south] (background) at (current page.base) {\includegraphics[width=\paperwidth]{#4}};
+    %\draw (current page.center) node [fill=red!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering The Search for a Title\\[15pt] % Book title
+    %{\Large A Profound Subtitle}\\[20pt] % Subtitle
+    %{\huge Dr. John Smith}}}; % Author name
+    \end{tikzpicture}
+  \end{titlepage}
+  \pagecolor{white}
+}
+
 % Footer/Header
 \RequirePackage{scrlayer-scrpage}
 \RequirePackage{lastpage}
