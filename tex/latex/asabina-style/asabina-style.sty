@@ -37,6 +37,11 @@
 \RequirePackage{array}
 \RequirePackage{xparse}  % To define commands and environments
 \RequirePackage{xstring} % To test when the pagenumbers are well defined
+\RequirePackage{mdframed}
+
+\definecolor{asabina-midgray}{HTML}{a1a1a1}
+\definecolor{asabina-lightgray}{HTML}{e4e4e4}
+\definecolor{asabina-pink}{HTML}{ff5583}
 
 \widowpenalty10000	% Is infinitely bad to have widow lines
 \clubpenalty100000	% Is infinitely bad to have orphan lines
@@ -131,6 +136,29 @@
   \end{titlepage}
   \pagecolor{white}
 }
+
+\NewDocumentEnvironment{aside}{}
+  {\begin{mdframed}[
+      style=0,
+      leftline=true,
+      rightline=false,
+      rightline=false,
+      topline=false,
+      bottomline=false,
+      backgroundcolor=asabina-lightgray,
+      linecolor=asabina-pink,
+      leftmargin=0pt,
+      rightmargin=0pt,
+      skipabove=1em,
+      skipbelow=1em,
+      innertopmargin=1em,
+      innerbottommargin=1em,
+      innerleftmargin=1em,
+      innerrightmargin=1em,
+      linewidth=1em,
+      skipabove=7pt,
+      skipbelow=7pt]\small}
+  {\end{mdframed}}
 
 % Footer/Header
 \RequirePackage{scrlayer-scrpage}
