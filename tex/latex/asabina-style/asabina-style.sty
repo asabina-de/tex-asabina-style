@@ -12,9 +12,10 @@
 ]{geometry}
 % Disables indentation
 \setlength{\parindent}{0cm}
-% Set the font
+
 \RequirePackage{fontspec}
-\setmainfont[Ligatures=TeX, Scale=1]{Montserrat-Regular}
+\RequirePackage{montserrat}
+\setmainfont[Ligatures=TeX, Scale=1]{montserrat}
 
 % Set the main font (Montserrat) to section headings and toc
 \@ifclassloaded{scrartcl}{%
@@ -37,6 +38,11 @@
 \RequirePackage{array}
 \RequirePackage{xparse}  % To define commands and environments
 \RequirePackage{xstring} % To test when the pagenumbers are well defined
+\RequirePackage{mdframed}
+
+\definecolor{asabina-midgray}{HTML}{a1a1a1}
+\definecolor{asabina-lightgray}{HTML}{e4e4e4}
+\definecolor{asabina-pink}{HTML}{ff5583}
 
 \widowpenalty10000	% Is infinitely bad to have widow lines
 \clubpenalty100000	% Is infinitely bad to have orphan lines
@@ -51,6 +57,7 @@
 \begin{tikzpicture}[remember picture, overlay]
 \node(background) [
   shape=rectangle,
+  draw=black,
   fill=black,
   minimum width=\paperwidth,
   minimum height=2.5cm,
@@ -106,6 +113,90 @@
     #6
   \end{minipage}
 }
+
+\NewDocumentEnvironment{asabina-title}{ m }{%
+  \vskip\baselineskip
+  \noindent
+  \Huge
+  \fontsize{1.5cm}{2.2cm}\selectfont
+  \begin{bfseries}%
+}{%
+  \end{bfseries}%
+  \vskip\baselineskip
+  \noindent
+  \Huge #1
+}
+
+\NewDocumentEnvironment{asabina-titlepage-unicolor}{ O{} O{black} O{white} }{%
+  \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+  \definecolor{namecolor}{cmyk}{1,.50,0,.10}
+
+  \begin{titlepage}
+  \pagecolor{#2}
+  \color{#3}
+  \noindent
+  #1
+  \vfill
+}{%
+  \end{titlepage}
+  \pagecolor{white}
+}
+
+\NewDocumentEnvironment{asabina-titlepage-tophalf}{ O{} O{black} O{white} O{} }{%
+  \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+  \definecolor{namecolor}{cmyk}{1,.50,0,.10}
+
+  \begin{titlepage}
+  \pagecolor{#2}
+  \color{#3}
+  #1
+  \vskip2cm
+}{%
+  %\AddToShipoutPictureFG{%
+  %  \AtPageLowerLeft{%
+  %    \raisebox{-\height}{%
+  %      \fbox{here we go}
+  %    }
+  %  }
+  %}
+
+  %\begin{picture}(50,50)
+  %  \put(200,-300){\hbox{\includegraphics[scale=0.3]{#1}}}
+  %\end{picture}
+
+  %\titlepic{\includegraphics[width=\paperwidth,keepaspectratio]{#4}}
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[inner sep=0pt,anchor=south] (background) at (current page.base) {\includegraphics[width=\paperwidth]{#4}};
+    %\draw (current page.center) node [fill=red!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering The Search for a Title\\[15pt] % Book title
+    %{\Large A Profound Subtitle}\\[20pt] % Subtitle
+    %{\huge Dr. John Smith}}}; % Author name
+    \end{tikzpicture}
+  \end{titlepage}
+  \pagecolor{white}
+}
+
+\NewDocumentEnvironment{aside}{}
+  {\begin{mdframed}[
+      style=0,
+      leftline=true,
+      rightline=false,
+      rightline=false,
+      topline=false,
+      bottomline=false,
+      backgroundcolor=asabina-lightgray,
+      linecolor=asabina-pink,
+      leftmargin=0pt,
+      rightmargin=0pt,
+      skipabove=1em,
+      skipbelow=1em,
+      innertopmargin=1em,
+      innerbottommargin=1em,
+      innerleftmargin=1em,
+      innerrightmargin=1em,
+      linewidth=1em,
+      skipabove=7pt,
+      skipbelow=7pt]\small}
+  {\end{mdframed}}
 
 % Footer/Header
 \RequirePackage{scrlayer-scrpage}
