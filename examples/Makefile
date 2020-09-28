@@ -18,13 +18,13 @@ clean:
 	$(RM) *.aux *.dvi *.log *.out *.toc *.pdf
 
 # Run make layout.pdf from within a Docker environment
-test-with-docker:
+test:
 	$(DOCKER) run \
-		--rm -it \
+		--rm \
 		--user=$(shell id -u):$(shell id -g) \
 		-v $(PWD)/..:/home \
 		-w /home/examples \
 		$(DOCKER_IMAGE) \
 		make -B layout.pdf
 
-.PHONY: clean test-with-docker
+.PHONY: clean test
