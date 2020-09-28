@@ -66,13 +66,13 @@
       anchor=south west,
       font=\footnotesize\bfseries, align=left
     ] at (current page.south west){\color{white}
-      \begin{minipage}[t]{0.215\textwidth}\baselineskip=10pt
+      \begin{minipage}[t]{0.2\textwidth}\baselineskip=10pt
         \tiny #1
       \end{minipage}
-      \begin{minipage}[t]{0.315\textwidth}\baselineskip=10pt
+      \begin{minipage}[t]{0.2\textwidth}\baselineskip=10pt
         \tiny #2
       \end{minipage}
-      \begin{minipage}[t]{0.22\textwidth}\baselineskip=10pt
+      \begin{minipage}[t]{0.2\textwidth}\baselineskip=10pt
         \tiny #3
       \end{minipage}
     }; #4
@@ -106,13 +106,13 @@
 
 \NewDocumentCommand{\triptychfooter}{ O{0.25} O{0.25} O{0.25} m m m }{%
   \begin{minipage}[t]{#1\textwidth}\baselineskip=10pt
-    #4
+    \tiny #4
   \end{minipage}
   \begin{minipage}[t]{#2\textwidth}\baselineskip=10pt
-    #5
+    \tiny #5
   \end{minipage}
   \begin{minipage}[t]{#3\textwidth}\baselineskip=10pt
-    #6
+    \tiny #6
   \end{minipage}
 }
 
