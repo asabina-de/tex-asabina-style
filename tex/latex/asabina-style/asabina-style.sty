@@ -53,10 +53,10 @@
 \usetikzlibrary{calc}
 
 \newcommand\Footer[4]{
-\begin{tikzpicture}[remember picture, overlay]
+  \begin{tikzpicture}[remember picture,overlay]
 \node(background) [
   shape=rectangle,
-  draw=asabina-pink,
+  draw=black,
   fill=black,
   minimum width=\paperwidth,
   minimum height=2.5cm,
@@ -75,7 +75,8 @@
     \tiny #3
   \end{minipage}
 }; #4
-\end{tikzpicture}}
+  \end{tikzpicture}
+}
 
 % TODO Make optional through DocumentHasFooter boolean
 \newcommand{\RenderDocumentFooter}[4]{%
