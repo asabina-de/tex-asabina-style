@@ -18,24 +18,45 @@
 % TODO Refactor style package to accept title as arg?
 \def\DocumentTitle{Example}
 
-\RenderDocumentFooter{%
-  Useful Innovations GmbH\\
-  Random-Straße 1337x\\
-  10101, Hack\\
-  Management: Kwamina Foo
-}{%
-  Register No.: AG Hack HRB\\
-  Court: Amtsgericht Hack Hex\\
-  Tax number: 10/010/01010\\
-  VAT Id.: DE000000000
-}{%
-  Bank: Imaginary Ethical Bank\\
-  BIC: IEB000000\\
-  IBAN: XX01 0000 1111 0000 1111 00
-}{%
+\def\addfooter{
+  \footer[
+    shape=rectangle,
+    draw=asabina-lightgray,
+    fill=asabina-lightgray,
+    minimum width=\paperwidth,
+    minimum height=2.5cm,
+    text width=0.95\paperwidth,
+    text height=-0.2cm,
+    anchor=south west,
+    font=\footnotesize\bfseries,
+    align=left
+  ]{%
+    \color{white}
+    \triptychfooter[0.3][0.3][0.3]{%
+      \tiny
+      Useful Innovations GmbH\\
+      Random-Straße 1337x\\
+      10101, Hack\\
+      Management: Kwamina Foo
+    }{%
+      \tiny
+      Register No.: AG Hack HRB\\
+      Court: Amtsgericht Hack Hex\\
+      Tax number: 10/010/01010\\
+      VAT Id.: DE000000000
+    }{%
+      \tiny
+      Bank: Imaginary Ethical Bank\\
+      BIC: IEB000000\\
+      IBAN: XX01 0000 1111 0000 1111 00 \\
+    }
+  }{%
+  }
 }
 
 \begin{document}
+  \addfooter
+
   \section{Intro}
   This is \textbf{just} another simple document
   \section{Body with $Math$}
