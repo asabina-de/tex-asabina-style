@@ -20,11 +20,13 @@ clean:
 # Run make layout.pdf from within a Docker environment
 test:
 	$(DOCKER) run \
+		--name xelatex-asabina-style-test \
 		--rm \
-		--name latex-asabina-style-test \
 		--user=$(shell id -u):$(shell id -g) \
-		-v $(PWD)/..:/home \
-		-w /home/examples \
+		-e "HOME=/home/examples" \
+		-v $(PWD)/../tex:/home/examples/texmf/tex \
+		-v $(PWD):/tmp/examples \
+		-w /tmp/examples \
 		$(DOCKER_IMAGE) \
 		make -B layout.pdf
 
