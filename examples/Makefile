@@ -21,6 +21,7 @@ clean:
 test:
 	$(DOCKER) run \
 		--rm \
+		--name latex-asabina-style-test \
 		--user=$(shell id -u):$(shell id -g) \
 		-v $(PWD)/..:/home \
 		-w /home/examples \
