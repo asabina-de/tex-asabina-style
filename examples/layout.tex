@@ -7,6 +7,9 @@
 \usepackage{verbatim}
 \usepackage[english]{babel}
 
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
 % This example expects the asabina-style to be installed to a TDS-conformant
 % in this case ~/texmf/tex/latex/asabina-style.
 % https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages
@@ -37,6 +40,8 @@
       IBAN: XX01 0000 1111 0000 1111 00 \\
     }
   }{%
+    \includegraphics[width=4cm,keepaspectratio]{whitelogo}
+    \hspace{0.25cm}
   }
 }
 
