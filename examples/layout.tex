@@ -4,38 +4,44 @@
   version=last
 ]{scrartcl}
 
+\usepackage{amsmath}
 \usepackage{verbatim}
 \usepackage[english]{babel}
-% If the package is "installed" into the TeX distribution, one can use
-% \usepackage{latex/asabina-style/asabina-style} or \usepackage{asabina-style}
-% to build this document.
 
-% In case installation of the package is not an option, one may symlink or copy
-% ${packageRoot}/tex/latex/asabina-style into latex/asabina-style/asabina-style
-% as demonstrated by the symlink inside this examples directory.
-\usepackage{latex/asabina-style/asabina-style}
+\usepackage{listings}
+\lstdefinestyle{customhs}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  %xleftmargin=\parindent,
+  escapechar={\%},
+  language=Haskell,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+% This example expects the asabina-style to be installed to a TDS-conformant
+% in this case ~/texmf/tex/latex/asabina-style.
+% https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages
+\usepackage{asabina-style}
 
 % TODO Refactor style package to accept title as arg?
 \def\DocumentTitle{Example}
 
 \def\addfooter{
-  \footer[
-    shape=rectangle,
-    draw=asabina-lightgray,
-    fill=asabina-lightgray,
-    minimum width=\paperwidth,
-    minimum height=2.5cm,
-    text width=0.95\paperwidth,
-    text height=-0.2cm,
-    anchor=south west,
-    font=\footnotesize\bfseries,
-    align=left
-  ]{%
+  \footer{%
     \color{white}
-    \triptychfooter[0.3][0.3][0.3]{%
+    \triptychfooter[0.25][0.25][0.25]{%
       \tiny
       Useful Innovations GmbH\\
-      Random-Straße 1337x\\
+      Random-Stra{\ss}e 1337x\\
       10101, Hack\\
       Management: Kwamina Foo
     }{%
@@ -51,6 +57,8 @@
       IBAN: XX01 0000 1111 0000 1111 00 \\
     }
   }{%
+    \includegraphics[width=4cm,keepaspectratio]{whitelogo}
+    \hspace{0.25cm}
   }
 }
 
@@ -59,15 +67,137 @@
 
   \section{Intro}
   This is \textbf{just} another simple document
+  \begin{figure}
+    \includegraphics[width=4cm,keepaspectratio]{Image_of_Mars_seen_by_OSIRIS-1024x1024}
+    % https://open.esa.int/mars-full-disc-by-rosettas-osiris-camera/
+    \caption{
+      Mars as seen by Rosetta’s OSIRIS camera (2007). Credit: ESA \& MPS for
+      OSIRIS Team MPS/UPD/LAM/IAA/RSSD/INTA/UPM/DASP/IDA, 2007, \href{CC BY-SA
+      3.0 IGO}{https://creativecommons.org/licenses/by-sa/3.0/igo/}
+    }
+  \end{figure}
   \section{Body with $Math$}
   So, I have just been learning about Sch\"odinger Wave Equations or which I
   know remarkably little.
   $${\displaystyle i\hbar {\frac {\partial }{\partial t}}\Psi (\mathbf {r} ,t)=\left[{\frac {-\hbar ^{2}}{2m}}\nabla ^{2}+V(\mathbf {r} ,t)\right]\Psi (\mathbf {r} ,t)}$$
+  \section{Body with table}
+  \begin{table}[h]
+    \centering
+      \begin{tabular}{| l c r |}
+      \hline
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9 \\
+      \hline
+    \end{tabular}
+    \caption{A simple table}
+  \end{table}
   \section{Body with code}
   Sometimes we need some code
-  \begin{verbatim}
-  y = m*x + b
-  \end{verbatim}
+  %\[
+  %  \displaystyle
+  %  F^{(n)}_k := \begin{cases}
+  %    0 & \mbox{if } 0 \leq k < n-1 \\
+  %    1 & \mbox{if } k = n-1 \\
+  %    \sum\limits_{i=k-n}^{(k-1)} F^{(n)}_i & \mbox{otherwise} \\
+  %  \end{cases}
+  %\]
+  \lstinputlisting[
+    caption=Haskell implementation of the Fibonacci sequence,
+    style=customhs
+  ]{src/fib.hs}
+
+  \section{Long text from lipsum.com}
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur
+  tempor scelerisque. Quisque at facilisis magna. Nulla luctus mattis tellus,
+  vel viverra sapien molestie ac. Vestibulum eu dolor id magna convallis
+  ultrices.  Quisque gravida turpis ut eleifend aliquam. Donec molestie elit
+  non neque maximus, in convallis tortor tempor. Duis cursus massa massa, eu
+  rhoncus est imperdiet nec. Duis felis arcu, ornare eget laoreet in, molestie
+  sit amet sem.  Maecenas ac elit nec purus imperdiet blandit a ac tellus.
+  Nulla facilisi.  Maecenas ut libero sit amet felis lacinia rhoncus.
+
+  Curabitur ac consectetur dolor, quis facilisis eros. Aenean risus quam,
+  rhoncus sit amet metus sit amet, volutpat imperdiet ante. Vestibulum metus
+  orci, dapibus sit amet dui in, convallis mollis turpis. Sed facilisis ornare
+  dui, consectetur ornare elit viverra ut. Praesent rhoncus neque magna, eu
+  mattis ante euismod vitae. Duis a lorem a orci molestie ullamcorper et id
+  dui. Duis blandit arcu urna, in pellentesque nulla mattis aliquet.
+  Suspendisse malesuada est a scelerisque tristique. Cras gravida ultrices dui
+  eget finibus. Morbi venenatis justo augue, maximus ultrices tellus tempus ut.
+  Nunc euismod aliquam nisi, aliquam placerat tellus vehicula vel. Fusce
+  eleifend varius felis non tincidunt.
+
+  Ut sed urna ac turpis tincidunt dignissim a interdum tortor. Vestibulum ante
+  ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+  Nullam vitae enim massa. In vel feugiat tellus, feugiat egestas risus. Cras
+  nec dolor diam. Sed aliquet dignissim justo eu faucibus. Sed a nulla in eros
+  imperdiet tempus. Praesent laoreet ornare nulla, finibus feugiat lacus
+  lobortis sed.
+
+  Integer elementum luctus massa, et aliquam arcu consequat at. Aliquam quis
+  accumsan urna. Vestibulum luctus eget dui id tincidunt. Etiam massa diam,
+  accumsan sed fermentum non, congue vel urna. Cras congue eros vel enim
+  vehicula tincidunt. Cras et bibendum ipsum. Aliquam suscipit a diam vitae
+  pulvinar. Sed nibh neque, mattis ac eros vel, sollicitudin porttitor nulla.
+  Integer egestas et magna in feugiat. Nullam lobortis mauris ac euismod
+  eleifend. Cras posuere semper nisl, at interdum nunc porttitor et.
+
+  Ut mollis rutrum congue. Praesent et ex eget nunc ultrices lacinia sit amet a
+  quam. Donec iaculis pulvinar felis ut vehicula. Integer fermentum diam non
+  nibh ullamcorper suscipit. Aenean porta sem augue, vitae sagittis magna
+  hendrerit malesuada. In nibh est, vulputate ac nisl et, suscipit sollicitudin
+  metus.  Phasellus varius lobortis nisi, vel porta sem vehicula sit amet. Cras
+  sagittis mattis est, in lobortis massa. Nulla convallis sem aliquam lorem
+  gravida, in commodo enim lacinia. Nulla ullamcorper risus feugiat ultrices
+  faucibus.
+
+  Cras finibus lorem metus, a lacinia mauris aliquet a. Curabitur dignissim dui
+  euismod nulla aliquet porttitor. Aliquam commodo rutrum semper. Proin quis
+  scelerisque lectus. Etiam dictum interdum egestas. Maecenas pulvinar
+  tristique lacus et consectetur. Morbi rutrum tellus ac interdum congue.
+  Vivamus eget erat accumsan, hendrerit dolor in, semper risus. Sed varius
+  sodales porta. Cras placerat non orci id rhoncus. Vivamus vulputate consequat
+  turpis sagittis condimentum. Proin eu magna eget purus pulvinar dictum.
+  Pellentesque dui purus, porta vel libero eget, vulputate ornare urna. Mauris
+  lacinia vehicula mi, vitae sollicitudin sapien fermentum in.
+
+  Nunc pharetra mi et vestibulum consequat. Aliquam dignissim tempor tincidunt.
+  Sed sit amet lectus commodo, mollis enim vitae, iaculis mi. Sed ultricies
+  risus a augue accumsan, varius gravida libero dignissim. Sed et feugiat
+  risus.  Suspendisse tristique egestas mattis. Suspendisse quis felis est.
+  Vestibulum laoreet justo id neque blandit, scelerisque imperdiet tortor
+  elementum.  Phasellus ac purus ac quam vulputate pretium.
+
+  Mauris nibh tortor, dignissim id venenatis sit amet, aliquam eu nibh. Sed at
+  malesuada mi. Nullam non neque quis turpis aliquet semper. Suspendisse vitae
+  leo eget neque interdum dictum. Duis sed tellus libero. Sed ultricies
+  ullamcorper orci ut ullamcorper. Etiam at sapien ornare, volutpat urna non,
+  facilisis tortor. Duis egestas felis ac magna tincidunt, in luctus lacus
+  lacinia. Cras a aliquam urna. Nunc in molestie lacus. Nunc convallis orci a
+  fringilla pharetra. Sed nec lacinia enim. Sed tincidunt sapien quis urna
+  laoreet commodo. Fusce hendrerit, felis a finibus mattis, eros ex interdum
+  erat, eget pellentesque nisi lectus id mi. Nullam vitae arcu interdum,
+  vehicula erat quis, feugiat ipsum. Nulla ipsum ipsum, fermentum sed accumsan
+  id, elementum nec leo.
+
+  Nullam gravida eu nibh sed venenatis. Phasellus vitae ex tellus. Phasellus
+  rutrum tempus pellentesque. Proin a leo non nisl pulvinar semper a non
+  tortor.  Donec lobortis purus sed facilisis dictum. Nunc mollis mi feugiat
+  felis euismod tempus. Suspendisse purus magna, tincidunt sit amet sagittis
+  sit amet, pulvinar non lorem. Aliquam finibus felis mi, iaculis maximus
+  tellus vulputate pretium.  Phasellus ac urna in nisl sodales convallis.
+  Vivamus non molestie nibh, vel pulvinar velit.
+
+  Pellentesque ex tortor, venenatis sit amet nisi ac, rhoncus scelerisque
+  sapien.  Sed purus sem, vulputate eget libero nec, lobortis iaculis nisl.
+  Donec lacinia augue in justo scelerisque egestas. Quisque eget lacus a ante
+  dapibus lacinia.  Integer viverra diam mollis gravida faucibus. Nullam in
+  fringilla velit.  Vivamus vulputate dui id accumsan mollis. Sed aliquet
+  bibendum metus, eget tristique lacus maximus vel. Aenean ultrices justo quis
+  erat semper lacinia.  Maecenas ornare sem mi, ac dapibus tortor ornare eu.
+
   \section{Conclusion}
   With all of this you are now sufficiently informed.
 \end{document}
